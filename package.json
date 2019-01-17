@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon /Users/mikealasheldt/learning/grace_hopper/juniors/pair_workshops/wikistack/app.js"
+    "start": "nodemon ./app.js"
   },
   "author": "",
   "license": "ISC",
