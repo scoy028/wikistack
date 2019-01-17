@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const layout = require('./views/layout')
-const { db } = require('./models');
+const { db } = require('./models'); // will look for index.js 
 
 const app = express();
 
@@ -22,6 +22,11 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send(layout(''));
 })
+
+async () => {
+  await db.sync();
+}
+
 
 const PORT = 3000;
 

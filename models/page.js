@@ -1,8 +1,19 @@
-const db = require('./index');
+const { db } = require('./index');
 
 const Page = db.define('page', {
   title : Sequelize.STRING,
-  slug: Sequelize.string,
-  status: Sequelize.BOOLEAN,
-  content: Sequelize.string
+  slug: Sequelize.STRING,
+  status: Sequelize.ENUM('open', 'closed'),
+  content: Sequelize.TEXT
 })
+
+const User = db.define('user', {
+  name: {
+    type: Sequelize.STRING
+  },
+  email: {
+    type: Sequelize.STRING
+  }
+});
+
+module.exports = { Page, User };
