@@ -1,15 +1,14 @@
 const express = require("express");
 const morgan = require("morgan");
 const layout = require('./views/layout')
-const { db } = require('./models'); // will look for index.js 
+const modelsObj = require('./models'); // will look for index.js
 
 const app = express();
 
-db.authenticate().
-then(() => {
-  console.log("we're connected");
-})
-
+// modelsObj.db.authenticate().
+// then(() => {
+//   console.log("we're connected");
+// })
 
 app.use(morgan("dev"));
 app.use(express.static(__dirname + "/public"));
@@ -23,13 +22,13 @@ app.get("/", (req, res) => {
   res.send(layout(''));
 })
 
-async () => {
-  await db.sync();
-}
-
-
 const PORT = 3000;
 
-app.listen(PORT, () => {
-  console.log(`App listening in port ${PORT}`);
-});
+const init = async () => {
+  await modelsObj.db.sync();
+  app.listen(PORT, () => {
+    console.log(`App listening in port ${PORT}`);
+  });
+}
+
+init();
